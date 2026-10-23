@@ -1057,3 +1057,4 @@ main > .cl-proof { display: block; padding: 22px 0; margin-bottom: 8px; }
 .lg { display: inline-block; margin: 0 .22em; vertical-align: -.2em; line-height: 1; }
 .lg img { display: block; height: 1.25em; width: auto; }
 .lg:nth-of-type(1) img { height: 1.2em; }
+.case-hero .shot--hero img { max-height: 520px; width: 100%; object-fit: contain; object-position: center; background: #f1f2f6; }

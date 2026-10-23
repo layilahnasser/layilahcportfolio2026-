@@ -50,6 +50,15 @@
     `<a href="${esc(href)}" target="_blank" rel="noopener">${label}<span class="sr-only"> (opens in a new tab)</span></a>`;
 
   /* ---------- Project table (home): Focus / Approach / Case study ---------- */
+  const STEPS = [
+    { k: "Problem", t: "I start by naming the problem with the people closest to it, like why Root customers leave or why the USDA import portal is hard to use." },
+    { k: "Research", t: "Interviews, surveys, and usability tests: 12 stakeholder and 6 customer interviews at Root, and 15+ interviews at USDA." },
+    { k: "Define", t: "Affinity mapping groups what we heard into themes, like Root’s retention levers and USDA’s findability barriers." },
+    { k: "Ideate", t: "Insight becomes ideas: 15 net-new retention concepts at Root, and five learning barriers turned into three product recommendations for ElevateED." },
+    { k: "Iterate", t: "Refining the work: wireframes and a shared component library for Milk & Froth, and live usability testing at Root." },
+    { k: "Execute", t: "Building the deliverable: final screens for Milk & Froth and Crown Code, and a research repository at Root hosted in Lovable." },
+    { k: "Impact", t: "Sharing what changed: final shareouts to leadership at Root and Instructure, and recommendations now live on USDA’s national portal." }
+  ];
   const pad = (n) => String(n).padStart(2, "0");
   function scoreboard() {
     return `
@@ -80,45 +89,61 @@
   /* ---------- Pages ---------- */
   const pages = {
     home() {
+      const cover = (p) => (p.hero && (p.hero.src || (p.hero.row && p.hero.row[0] && p.hero.row[0].src))) || "";
+      const first = (x) => { const m = String(plain(x)).match(/^.*?[.!?](\s|$)/); return m ? m[0].trim() : plain(x); };
       return `
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <div class="hero-stats"><span>Location: ${esc(me.location)}</span><span>M.S. candidate, May 2027</span></div>
-            ${logo("logo--xl")}
-            <h1 id="hero-title" class="hero-title"><span class="sr-only">${esc(me.firstName)} ${esc(me.lastName)}: </span>${esc(me.heroTitle)}</h1>
-            <p class="hero-tagline">${esc(me.headline)}</p>
-            <div class="hero-ctas">
-              <a class="btn btn--pink" href="#scoreboard">Pick a project</a>
-              <a class="btn btn--ghost" href="about.html">About me</a>
-            </div>
+        <section class="cl-hero" aria-labelledby="hero-title">
+          <div class="cl-hero-tx">
+            <p class="cl-hi" aria-hidden="true"><span>Hi, I’m Layilah (Lay-La)!</span><svg viewBox="0 0 70 46" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 14 C 24 2, 50 6, 60 30"/><path d="M50 26 L61 32 L63 19"/></svg></p>
+            <p class="cl-eyebrow">${esc(me.title)} · ${esc(me.location)}</p>
+            <h1 id="hero-title"><span class="sr-only">${esc(me.firstName)} ${esc(me.lastName)}: </span>From Big Tech Recruiting to <span class="cl-ux">UX.<svg viewBox="0 0 200 22" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true"><path d="M4 14 C 40 4, 80 18, 120 8 S 180 12, 196 8"/></svg></span></h1>
+            <p class="cl-lede">${esc(me.headline).replace("Google, Adobe &amp; Meta", `<span class="lg"><img src="assets/img/logos/google.png" alt="Google"></span><span class="lg"><img src="assets/img/logos/adobe.png" alt="Adobe"></span><span class="lg"><img src="assets/img/logos/meta.png" alt="Meta"></span>`)}</p>
+            <div class="cl-ctas"><a class="cl-btn" href="#work">See my work</a><a class="cl-btn cl-btn--line" href="about.html">About me</a></div>
           </div>
-          <div class="hero-scene">
-            <div class="hero-card-col">
-              ${portrait({ cls: "player-card--hero" })}
-              <dl class="statbar" aria-label="At a glance">
-                ${(me.stats || []).map((x) => `<div class="statbar-i"><dd>${esc(x.value === "projects" ? P.projects.length : x.value)}</dd><dt>${esc(x.label)}</dt></div>`).join("")}
-              </dl>
-            </div>
+          <div class="cl-board" id="board" role="group" aria-label="My research, by the numbers">
+            <p class="cl-board-k">My research, by the numbers</p>
+            <ul>
+              <li class="sn sn--y" style="--x:4%;--y:13%;--r:-3deg"><i></i><b>12 + 6</b><span>stakeholder and customer interviews</span><small>Root Insurance</small></li>
+              <li class="sn sn--g" style="--x:36%;--y:9%;--r:2.5deg"><i></i><b>15+</b><span>interviews with importers, brokers, and officials</span><small>USDA ACIR</small></li>
+              <li class="sn sn--stk" style="--x:60%;--y:0%;--r:3deg"><span class="tp tp--l" aria-hidden="true"></span><span class="tp tp--r" aria-hidden="true"></span><img src="assets/img/layilah-sticker.png" alt="${esc(me.photoAlt)}" draggable="false"><span class="stk-hand" aria-hidden="true"><svg viewBox="0 0 30 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38 C 6 28, 10 14, 20 5"/><path d="M11 6 L21 4 L22 15"/></svg><span>that’s me!</span></span><span class="stk-star" aria-hidden="true">✦</span><span class="stk-star stk-star--2" aria-hidden="true">✦</span></li>
+              <li class="sn sn--p" style="--x:6%;--y:46%;--r:-2deg"><i></i><b>15</b><span>net-new retention concepts</span><small>Root Insurance</small></li>
+              <li class="sn sn--b" style="--x:38%;--y:44%;--r:2deg"><i></i><b>10</b><span>interviews, 5 learning barriers</span><small>Instructure ElevateED</small></li>
+              <li class="sn sn--o" style="--x:70%;--y:51%;--r:-2.5deg"><i></i><b>10+</b><span>usability tests with employees</span><small>USDA ACIR</small></li>
+              <li class="sn sn--y" style="--x:22%;--y:77%;--r:3deg"><i></i><span class="sn-t">Design systems first</span><small>Milk &amp; Froth</small></li>
+            </ul>
+            <p class="cl-drag" aria-hidden="true">drag me around ↗</p>
           </div>
         </section>
 
-        <section id="scoreboard" class="section" aria-labelledby="sb-title">
-          <header class="section-head">
-            <p class="eyebrow">Selected work</p>
-            <h2 id="sb-title">Choose a project <span class="start-badge">Start here</span></h2>
-            <p class="lede">Explore my UX research and design case studies. Click a project to open the case study.</p>
-          </header>
-          ${scoreboard()}
+        <section class="cl-process" aria-labelledby="proc-title">
+          <h2 id="proc-title">How I work, step by step</h2>
+          <p class="cl-sub">Pick a stop to see what I do at that stage.</p>
+          <ol class="cl-steps" id="steps">${STEPS.map((st, i) => `<li><button type="button" class="cl-step" data-i="${i}" aria-expanded="${i === 0}" aria-controls="step-panel"><span class="cl-dot">${i + 1}</span><span class="cl-lbl">${st.k}</span></button></li>`).join("")}</ol>
+          <div class="cl-panel" id="step-panel" role="region" aria-live="polite" aria-label="Stage details"><b id="step-h">${STEPS[0].k}</b><p id="step-p">${STEPS[0].t}</p></div>
         </section>
 
+        <section class="cl-work" id="work" aria-labelledby="work-title">
+          <h2 id="work-title">Selected work</h2>
+          ${P.projects
+            .map(
+              (p, i) => `
+          <article class="cl-band${i % 2 ? " is-flip" : ""}">
+            <a class="cl-band-img" href="project.html?p=${esc(p.id)}" tabindex="-1" aria-hidden="true">${cover(p) ? `<img src="${esc(cover(p))}" alt="" loading="lazy">` : ""}</a>
+            <div class="cl-band-tx">
+              <p class="cl-meta">${String(i + 1).padStart(2, "0")} · ${esc(p.focus)} · ${esc(p.year || "")}</p>
+              <h3><a href="project.html?p=${esc(p.id)}">${t(p.title)}</a></h3>
+              <p>${t(first(p.approach))}</p>
+              ${p.glance && p.glance.changed ? `<p class="cl-result"><b>What changed.</b> ${t(p.glance.changed)}</p>` : ""}
+              <a class="cl-more" href="project.html?p=${esc(p.id)}" aria-label="Read the ${esc(plain(p.title))} case study">Read case study <span aria-hidden="true">→</span></a>
+            </div>
+          </article>`
+            )
+            .join("")}
+        </section>
 
-        <section class="section" aria-label="More pages">
-          <div class="tablet-row">
-            <a class="tablet" href="about.html"><span class="tablet-k">Story</span><strong>About Me</strong><span>Who I am &amp; how I work</span></a>
-            <a class="tablet" href="work.html"><span class="tablet-k">Portfolio</span><strong>My Work</strong><span>All case studies</span></a>
-            <a class="tablet" href="resume.html"><span class="tablet-k">Background</span><strong>Resume</strong><span>Experience &amp; skills</span></a>
-            <a class="tablet" href="contact.html"><span class="tablet-k">Say hello</span><strong>Contact</strong><span>Let’s talk</span></a>
-          </div>
+        <section class="cl-about" aria-labelledby="ab-title">
+          <img src="${esc(me.photo)}" alt="${esc(me.photoAlt)}">
+          <div><h2 id="ab-title">${esc(P.about.title)}</h2><p>${esc(P.about.lede)}</p><dl class="cl-facts2"><div><dd>${esc(me.stats[0].value)}</dd><dt>${esc(me.stats[0].label)}</dt></div><div><dd>2027</dd><dt>M.S., Univ. of Michigan</dt></div></dl><a class="cl-btn" href="about.html">Read my story</a> <a class="cl-btn cl-btn--line" href="contact.html">Get in touch</a></div>
         </section>`;
     },
 
@@ -526,6 +551,7 @@
                 ${p.intro ? `<p class="case-intro">${t(p.intro)}</p>` : ""}
               </div>
             </div>
+            ${img(p.hero, "shot--hero" + (p.hero && p.hero.fit === "phone" ? " shot--phone" : ""))}
             <dl class="case-meta">
               <div><dt>Role</dt><dd>${t(p.role)}</dd></div>
               <div><dt>Team</dt><dd>${String(p.team).split("\n").map((l) => t(l)).join("<br>")}</dd></div>
@@ -534,10 +560,9 @@
             </dl>
             ${p.glance ? `<ul class="glance-boxes" aria-label="Case study at a glance">${[["Problem", p.glance.problem], ["What I did", p.glance.did], ["What changed", p.glance.changed]].map(([k, v]) => `<li><b>${k}</b><span>${t(v)}</span></li>`).join("")}</ul>` : ""}
             <div class="expand-bar"><p>Skim the summaries, or open every section to see the methods, evidence, and reasons behind them.</p><button type="button" class="expand-all" aria-pressed="false">Open all details</button></div>
-            ${img(p.hero, "shot--hero" + (p.hero && p.hero.fit === "phone" ? " shot--phone" : ""))}
           </header>
 
-          <nav class="fstrip-nav" aria-label="Case study frames">
+          <nav class="fstrip-nav" aria-label="Case study frames"><span class="fprog" id="fprog" aria-hidden="true"></span>
             <ol class="fstrip">${FRAMES.map((f, i) => `<li class="fcell"><a href="#${f.key}" data-frame="${f.key}"><span class="fn">${i + 1}<span class="fl"> ${f.label}</span></span><span class="fm" aria-hidden="true"></span><span class="sr-only fstate"></span></a></li>`).join("")}</ol>
           </nav>
 
@@ -564,6 +589,22 @@
   if (pages[page]) main.innerHTML = pages[page]();
 
   /* ---------- Page behaviours ---------- */
+  if (page === "home") {
+    const steps = [...document.querySelectorAll(".cl-step")], hh = document.getElementById("step-h"), pp = document.getElementById("step-p"), ol = document.getElementById("steps");
+    const pick = (i) => { steps.forEach((b, j) => { b.setAttribute("aria-expanded", String(i === j)); b.parentElement.classList.toggle("is-on", i === j); b.parentElement.classList.toggle("is-done", j < i); }); hh.textContent = STEPS[i].k; pp.textContent = STEPS[i].t; ol.style.setProperty("--p", (i / (STEPS.length - 1)) * 100 + "%"); };
+    steps.forEach((b, i) => { b.addEventListener("click", () => pick(i)); b.addEventListener("mouseenter", () => matchMedia("(hover: hover)").matches && pick(i)); });
+    pick(0);
+    // draggable notes
+    const board = document.getElementById("board"); let zi = 5;
+    board.querySelectorAll(".sn").forEach((n) => {
+      let sx, sy, ox = 0, oy = 0, on = false;
+      n.addEventListener("pointerdown", (e) => { on = true; sx = e.clientX; sy = e.clientY; ox = +n.dataset.dx || 0; oy = +n.dataset.dy || 0; n.setPointerCapture(e.pointerId); n.style.zIndex = ++zi; n.classList.add("is-lift"); });
+      n.addEventListener("pointermove", (e) => { if (!on) return; const br = board.getBoundingClientRect(), r = n.getBoundingClientRect(); let dx = ox + e.clientX - sx, dy = oy + e.clientY - sy; n.dataset.dx = dx; n.dataset.dy = dy; n.style.translate = dx + "px " + dy + "px"; });
+      const end = () => { on = false; n.classList.remove("is-lift"); };
+      n.addEventListener("pointerup", end); n.addEventListener("pointercancel", end);
+    });
+  }
+
   if (page === "project") {
     // Make the details easy to find: say what is inside, open the process frames, and offer expand/collapse all.
     const hints = { problem: "how I identified it and the goal", research: "every method and the key insights", methods: "every method and why I chose it", define: "who we designed for and what it means", ideate: "the thinking behind the wireframes", iterate: "each round, what changed and how I checked it", execution: "the full build notes", objectives: "the full objectives and questions", findings: "the full findings and evidence", insights: "the patterns and what they mean", recommendations: "the full recommendations and evidence", impact: "the decisions this influenced and my reflection" };
@@ -583,6 +624,8 @@
       all.textContent = on ? "Close all details" : "Open all details";
     });
     const links = [...document.querySelectorAll(".fstrip a")];
+    const fprog = document.getElementById("fprog");
+    if (fprog) { const upd = () => { const h = document.documentElement.scrollHeight - innerHeight; fprog.style.width = (h > 0 ? Math.min(100, (scrollY / h) * 100) : 0) + "%"; }; addEventListener("scroll", upd, { passive: true }); upd(); }
     const frames = [...document.querySelectorAll(".frame")];
     const paint = (cur) => {
       links.forEach((l, i) => {

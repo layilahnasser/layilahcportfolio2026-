@@ -165,17 +165,17 @@
     if (header) {
       header.innerHTML = `
         <a class="skip" href="#main">Skip to content</a>
-        <nav class="hud-bar" aria-label="Main">
-          <ul class="hud-links">
-            ${NAV.map(
-                (n) =>
-                  `<li><a href="${n.href}" class="hud-pill${page === n.key || (page === "project" && n.key === "work") ? " is-active" : ""}"${
-                    page === n.key ? ' aria-current="page"' : ""
-                  }>${n.label}</a></li>`
-              )
-              .join("")}
-          </ul>
-        </nav>`;
+        <div class="nv-bar">
+          <a class="nv-brand" href="index.html" aria-label="${esc(me.firstName)} ${esc(me.lastName)}, home">${esc(me.firstName)} ${esc(me.lastName)}</a>
+          <nav class="nv-nav" aria-label="Main">
+            <ul>
+              ${NAV.filter((n) => n.key !== "home" && n.key !== "contact")
+                .map((n) => `<li><a href="${n.href}" class="nv-link${page === n.key || (page === "project" && n.key === "work") ? " is-active" : ""}"${page === n.key ? ' aria-current="page"' : ""}>${n.label === "My Work" ? "Work" : n.label === "About Me" ? "About" : n.label}</a></li>`)
+                .join("")}
+              <li><a class="nv-cta${page === "contact" ? " is-active" : ""}" href="contact.html"${page === "contact" ? ' aria-current="page"' : ""}>Contact</a></li>
+            </ul>
+          </nav>
+        </div>`;
     }
     const footer = document.getElementById("footer");
     if (footer) {

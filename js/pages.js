@@ -3,6 +3,7 @@
   const P = window.PORTFOLIO;
   const me = P.profile;
   const { esc, t, isTodo, plain, img, ballSVG, logo, portrait } = window.LANES;
+  const INL = window.INLINE || { logos: {}, sticker: "assets/img/layilah-sticker.png" };
   const main = document.getElementById("main");
   const page = document.body.dataset.page;
 
@@ -56,7 +57,7 @@
     { k: "Define", t: "Affinity mapping groups what we heard into themes, like Root’s retention levers and USDA’s findability barriers." },
     { k: "Ideate", t: "Insight becomes ideas: 15 net-new retention concepts at Root, and five learning barriers turned into three product recommendations for ElevateED." },
     { k: "Iterate", t: "Refining the work: wireframes and a shared component library for Milk & Froth, and live usability testing at Root." },
-    { k: "Execute", t: "Building the deliverable: final screens for Milk & Froth and Crown Code, and a research repository at Root hosted in Lovable." },
+    { k: "Execute", t: "Building the deliverable: final screens for Milk & Froth and Crown Code, and a centralized research repository at Root built with Claude Code." },
     { k: "Impact", t: "Sharing what changed: final shareouts to leadership at Root and Instructure, and recommendations now live on USDA’s national portal." }
   ];
   const pad = (n) => String(n).padStart(2, "0");
@@ -97,7 +98,7 @@
             <p class="cl-hi" aria-hidden="true"><span>Hi, I’m Layilah (Lay-La)!</span><svg viewBox="0 0 70 46" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 14 C 24 2, 50 6, 60 30"/><path d="M50 26 L61 32 L63 19"/></svg></p>
             <p class="cl-eyebrow">${esc(me.title)} · ${esc(me.location)}</p>
             <h1 id="hero-title"><span class="sr-only">${esc(me.firstName)} ${esc(me.lastName)}: </span>From Big Tech Recruiting to <span class="cl-ux">UX.<svg viewBox="0 0 200 22" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true"><path d="M4 14 C 40 4, 80 18, 120 8 S 180 12, 196 8"/></svg></span></h1>
-            <p class="cl-lede">${esc(me.headline).replace("Google, Adobe &amp; Meta", `<span class="lg"><img src="assets/img/logos/google.png" alt="Google"></span><span class="lg"><img src="assets/img/logos/adobe.png" alt="Adobe"></span><span class="lg"><img src="assets/img/logos/meta.png" alt="Meta"></span>`)}</p>
+            <p class="cl-lede">${esc(me.headline).replace("Google, Adobe &amp; Meta", `<span class="lg"><img src="${INL.logos.google}" alt="Google"></span><span class="lg"><img src="${INL.logos.adobe}" alt="Adobe"></span><span class="lg"><img src="${INL.logos.meta}" alt="Meta"></span>`)}</p>
             <div class="cl-ctas"><a class="cl-btn" href="#work">See my work</a><a class="cl-btn cl-btn--line" href="about.html">About me</a></div>
           </div>
           <div class="cl-board" id="board" role="group" aria-label="My research, by the numbers">
@@ -105,7 +106,7 @@
             <ul>
               <li class="sn sn--y" style="--x:4%;--y:13%;--r:-3deg"><i></i><b>12 + 6</b><span>stakeholder and customer interviews</span><small>Root Insurance</small></li>
               <li class="sn sn--g" style="--x:36%;--y:9%;--r:2.5deg"><i></i><b>15+</b><span>interviews with importers, brokers, and officials</span><small>USDA ACIR</small></li>
-              <li class="sn sn--stk" style="--x:60%;--y:0%;--r:3deg"><span class="tp tp--l" aria-hidden="true"></span><span class="tp tp--r" aria-hidden="true"></span><img src="assets/img/layilah-sticker.png" alt="${esc(me.photoAlt)}" draggable="false"><span class="stk-hand" aria-hidden="true"><svg viewBox="0 0 30 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38 C 6 28, 10 14, 20 5"/><path d="M11 6 L21 4 L22 15"/></svg><span>that’s me!</span></span><span class="stk-star" aria-hidden="true">✦</span><span class="stk-star stk-star--2" aria-hidden="true">✦</span></li>
+              <li class="sn sn--stk" style="--x:60%;--y:0%;--r:3deg"><span class="tp tp--l" aria-hidden="true"></span><span class="tp tp--r" aria-hidden="true"></span><img src="${INL.sticker}" alt="${esc(me.photoAlt)}" draggable="false"><span class="stk-hand" aria-hidden="true"><svg viewBox="0 0 30 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38 C 6 28, 10 14, 20 5"/><path d="M11 6 L21 4 L22 15"/></svg><span>that’s me!</span></span><span class="stk-star" aria-hidden="true">✦</span><span class="stk-star stk-star--2" aria-hidden="true">✦</span></li>
               <li class="sn sn--p" style="--x:6%;--y:46%;--r:-2deg"><i></i><b>15</b><span>net-new retention concepts</span><small>Root Insurance</small></li>
               <li class="sn sn--b" style="--x:38%;--y:44%;--r:2deg"><i></i><b>10</b><span>interviews, 5 learning barriers</span><small>Instructure ElevateED</small></li>
               <li class="sn sn--o" style="--x:70%;--y:51%;--r:-2.5deg"><i></i><b>10+</b><span>usability tests with employees</span><small>USDA ACIR</small></li>

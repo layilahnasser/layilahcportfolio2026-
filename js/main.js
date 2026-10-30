@@ -187,7 +187,7 @@
             ${me.email ? `<a href="mailto:${esc(me.email)}">Email</a>` : ""}
             ${me.linkedin ? `<a href="${esc(me.linkedin)}" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>` : ""}
             <a href="resume.html">Resume</a>
-            <a href="https://layilahnasser.github.io/seatgreekportfolio-/">See the interactive version</a>
+            <a href="https://layilahnasser.github.io/seatgeekportfolio/">See the interactive version</a>
           </p>
         </div>`;
     }

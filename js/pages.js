@@ -96,8 +96,8 @@
         <section class="cl-hero" aria-labelledby="hero-title">
           <div class="cl-hero-tx">
             <p class="cl-hi" aria-hidden="true"><span>Hi, I’m Layilah (Lay-La)!</span><svg viewBox="0 0 70 46" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 14 C 24 2, 50 6, 60 30"/><path d="M50 26 L61 32 L63 19"/></svg></p>
-            <p class="cl-eyebrow">${esc(me.title)} · ${esc(me.location)}</p>
-            <h1 id="hero-title"><span class="sr-only">${esc(me.firstName)} ${esc(me.lastName)}: </span>From Big Tech Recruiting to <span class="cl-ux">UX.<svg viewBox="0 0 200 22" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true"><path d="M4 14 C 40 4, 80 18, 120 8 S 180 12, 196 8"/></svg></span></h1>
+            <p class="cl-eyebrow">M.S. in UX Research &amp; Design · May 2027 · ${esc(me.location)}</p>
+            <h1 id="hero-title"><span class="sr-only">${esc(me.firstName)} ${esc(me.lastName)}: </span><span class="cl-ux">UX<svg viewBox="0 0 200 22" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" aria-hidden="true"><path d="M4 14 C 40 4, 80 18, 120 8 S 180 12, 196 8"/></svg></span> Researcher &amp; Designer.</h1>
             <p class="cl-lede">${esc(me.headline).replace("Google, Adobe &amp; Meta", `<span class="lg"><img src="${INL.logos.google}" alt="Google"></span><span class="lg"><img src="${INL.logos.adobe}" alt="Adobe"></span><span class="lg"><img src="${INL.logos.meta}" alt="Meta"></span>`)}</p>
             <div class="cl-ctas"><a class="cl-btn" href="#work">See my work</a><a class="cl-btn cl-btn--line" href="about.html">About me</a></div>
           </div>

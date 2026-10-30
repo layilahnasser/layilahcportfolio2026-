@@ -18,7 +18,7 @@ window.PORTFOLIO = {
     lastName: "Campbell",
     title: "UX Research & Design", // shows under your name in the neon logo
     heroTitle: "UX Researcher & Designer", // big cyan line on the home page
-    headline: "UX researcher and designer graduating from Michigan in May 2027, with seven years of recruiting at Google, Adobe & Meta behind me.",
+    headline: "Graduating in May 2027. Seven years recruiting at Google, Adobe & Meta came first.",
     // Stat readouts under the home photo card. Use the word "projects" to show the live project count.
     stats: [
       { value: "7", label: "Years in tech" },

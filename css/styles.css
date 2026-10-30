@@ -1149,3 +1149,5 @@ main > .cl-proof { display: block; padding: 22px 0; margin-bottom: 8px; }
 
 .glance-boxes--2 { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 700px) { .glance-boxes--2 { grid-template-columns: 1fr; } }
+
+.lgs { white-space: nowrap; }
